@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  web:
+    image: calculator
+    container_name: calculator
+    networks:
+      my-network:
+        ipv4_address: 172.28.5.2
+  db:
+    image: database
+    container_name: database
+    networks:
+      my-network:
+        ipv4_address: 172.28.5.3
+
+networks:
+  my-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+          gateway: 172.28.0.1
